@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AP Calculus BC Notes (p.105–184)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.7;
+      margin: 0;
+      padding: 0;
+      background: #f8f9fa;
+      color: #222;
+    }
+    header {
+      background: #2c3e50;
+      color: white;
+      padding: 1.5rem 2rem;
+      text-align: center;
+    }
+    section {
+      max-width: 900px;
+      margin: 2rem auto;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    }
+    h2 {
+      border-bottom: 2px solid #eee;
+      padding-bottom: 0.4rem;
+      margin-bottom: 1rem;
+      color: #2c3e50;
+    }
+    ul, ol {
+      padding-left: 1.5rem;
+    }
+    li {
+      margin-bottom: 0.5rem;
+    }
+    .example {
+      background: #eef7ff;
+      border-left: 4px solid #3498db;
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>📘 AP Calculus BC Notes (p.105–184)</h1>
+  </header>
+
+  <section>
+    <h2>1. Limits at Infinity & Asymptotes</h2>
+    <p><strong>Horizontal Asymptote</strong>: If \( \lim_{x \to \infty} f(x) = L \), then the graph approaches \(y=L\).</p>
+    <p><strong>Vertical Asymptote</strong>: If \( \lim_{x \to a^\pm} f(x) = \pm \infty \), then the line \(x=a\) is a vertical asymptote.</p>
+    <p><strong>Continuity Conditions</strong>:</p>
+    <ol>
+      <li>\(f(a)\) is defined</li>
+      <li>\(\lim_{x \to a} f(x)\) exists</li>
+      <li>\(\lim_{x \to a} f(x) = f(a)\)</li>
+    </ol>
+    <p><strong>Types of Discontinuities</strong>: removable, jump, infinite.</p>
+  </section>
+
+  <section>
+    <h2>2. Derivative: Definition</h2>
+    <p>\( f'(x) = \lim_{h \to 0} \frac{f(x+h)-f(x)}{h} \)</p>
+    <div class="example">
+      Example: \( f(x)=x^2 \) → \( f'(x)=2x \).
+    </div>
+  </section>
+
+  <section>
+    <h2>3. Differentiability</h2>
+    <p>Differentiability requires continuity. But continuity does not always imply differentiability.</p>
+    <ul>
+      <li>Sharp corner: \(y=|x|\) at \(x=0\)</li>
+      <li>Cusp: slope → \(\pm\infty\)</li>
+      <li>Vertical tangent</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>4. Basic Derivative Rules</h2>
+    <ul>
+      <li>Power Rule: \((x^n)' = nx^{n-1}\)</li>
+      <li>Product Rule: \((fg)' = f'g + fg'\)</li>
+      <li>Quotient Rule: \(\left(\frac{f}{g}\right)'=\frac{f'g-fg'}{g^2}\)</li>
+      <li>Sum/Difference Rule: derivative distributes</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>5. Chain Rule</h2>
+    <p>\(\frac{dy}{dx} = \frac{dy}{du}\cdot \frac{du}{dx}\)</p>
+    <div class="example">
+      Example: \( y=(3x^2+1)^5 \) → \( y'=30x(3x^2+1)^4 \).
+    </div>
+  </section>
+
+  <section>
+    <h2>6. Derivatives of Common Functions</h2>
+    <ul>
+      <li>\((\sin x)'=\cos x\)</li>
+      <li>\((\cos x)'=-\sin x\)</li>
+      <li>\((e^x)'=e^x\)</li>
+      <li>\((\ln x)'=\frac{1}{x},\ x>0\)</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>7. Higher-Order Derivatives</h2>
+    <p>Second derivative: \(f''(x)\). Indicates concavity, acceleration in physics.</p>
+    <p>General: \( f^{(n)}(x), \ \frac{d^n y}{dx^n} \).</p>
+  </section>
+
+  <section>
+    <h2>8. Implicit Differentiation</h2>
+    <div class="example">
+      Example: \(x^2+y^2=25\) → \(2x+2y\frac{dy}{dx}=0 \Rightarrow \frac{dy}{dx}=-\frac{x}{y}\).
+    </div>
+  </section>
+
+  <section>
+    <h2>9. L’Hôpital’s Rule</h2>
+    <p>For indeterminate forms \(\frac{0}{0}, \frac{\infty}{\infty}\):</p>
+    <p>\(\lim_{x \to a}\frac{f(x)}{g(x)} = \lim_{x \to a}\frac{f'(x)}{g'(x)}\)</p>
+    <div class="example">
+      Example: \(\lim_{x \to 0}\frac{\sin x}{x} = 1\).
+    </div>
+  </section>
+
+  <section>
+    <h2>10. Applications of Derivatives</h2>
+    <ul>
+      <li><strong>Tangent line</strong>: \(y-f(a)=f'(a)(x-a)\)</li>
+      <li><strong>Rate of change</strong>: average = \(\frac{f(b)-f(a)}{b-a}\), instantaneous = \(f'(a)\)</li>
+      <li><strong>Physics</strong>: \(s(t)\) → \(v=s'(t)\) → \(a=s''(t)\)</li>
+      <li><strong>Optimization</strong>: maximize/minimize cost, revenue, area</li>
+      <li><strong>Concavity</strong>: \(f''(x)>0\) convex up, \(f''(x)<0\) convex down, inflection point when sign changes</li>
+    </ul>
+  </section>
+
+</body>
+</html>
