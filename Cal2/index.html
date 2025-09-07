@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>AP Calculus: Linearization · Motion · Parametric/Polar/Vector · Integrals</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    :root {
+      --bg:#f8f9fa; --fg:#222; --card:#fff; --muted:#6b7280; --brand:#2c3e50; --accent:#3498db; --border:#e6e9ef;
+      --note:#fff8e1; --note-border:#ffe69c; --info:#eef7ff; --info-border:#d6e8fb;
+    }
+    *{box-sizing:border-box}
+    body{font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,sans-serif; margin:0; line-height:1.7; color:var(--fg); background:var(--bg)}
+    header{background:var(--brand); color:#fff; text-align:center; padding:1.6rem 1rem}
+    header h1{margin:0 0 .25rem; font-size:1.6rem}
+    header p{margin:0; opacity:.9}
+    main{max-width:1100px; margin:2rem auto; padding:0 1rem}
+    section{background:#fff; border:1px solid var(--border); border-radius:12px; box-shadow:0 6px 14px rgba(0,0,0,.06); padding:1.5rem; margin-bottom:1.25rem}
+    h2{margin:0 0 1rem; color:var(--brand); border-bottom:2px solid #f0f2f5; padding-bottom:.45rem; font-size:1.25rem}
+    h3{margin:1rem 0 .4rem; color:#34495e}
+    h4{margin:.8rem 0 .2rem; color:#3b4b63}
+    p code, li code {background:#f6f8fb; border:1px solid var(--border); border-radius:6px; padding:.1rem .35rem}
+    pre{background:#f6f8fb; border:1px solid var(--border); border-radius:10px; padding:.8rem 1rem; overflow:auto}
+    .note{background:var(--note); border:1px solid var(--note-border); border-left:4px solid #ffcc00; padding:.8rem 1rem; border-radius:10px}
+    .info{background:var(--info); border:1px solid var(--info-border); border-left:4px solid var(--accent); padding:.8rem 1rem; border-radius:10px}
+    .grid{display:grid; gap:1rem}
+    @media(min-width:920px){ .two{grid-template-columns:1fr 1fr} .three{grid-template-columns:1fr 1fr 1fr} }
+    .kvs{display:grid; grid-template-columns:180px 1fr; gap:.4rem .75rem}
+    ul{margin:.35rem 0 .25rem 1.1rem}
+    li{margin:.25rem 0}
+    table{border-collapse:collapse; width:100%; margin:.5rem 0}
+    th,td{border:1px solid var(--border); padding:.55rem .6rem; text-align:center}
+    th{background:#f6f7f9}
+    .tag{display:inline-block; background:#eef7ff; border:1px solid #d6e8fb; color:#1a64a6; border-radius:6px; padding:.1rem .45rem; font-size:.85rem}
+    .example-title{font-weight:700; color:#2b3b56}
+    .sep{height:1px; background:#f0f2f5; margin:1rem 0}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>AP Calculus Notes — Linearization · Motion · Parametric/Polar/Vector · Integrals</h1>
+    <p>A structured, comprehensive study sheet with proofs, intuition, and worked examples</p>
+  </header>
+
+  <!-- 1. Linear Approximations & Differentials -->
+  <section>
+    <h2>1) Linear Approximations & Differentials (pp. 185–186)</h2>
+    <h3>Concept</h3>
+    <p>Near a point \(a\), a differentiable function \(f(x)\) is well-approximated by its tangent line. The <strong>linearization</strong> at \(x=a\) is</p>
+    <p>\[
+      L(x) = f(a) + f'(a)\,(x-a).
+    \]</p>
+    <div class="info">
+      <strong>Why it works:</strong> By the Mean Value Theorem, the error \(f(x)-L(x)\) is on the order of \((x-a)^2\). That is, for small \(h=x-a\), the linear term dominates and the curve “looks straight.”
+    </div>
+
+    <h3>Interpretations</h3>
+    <ul>
+      <li><strong>Estimate values:</strong> \(f(x) \approx L(x)\) for \(x\) close to \(a\).</li>
+      <li><strong>Propagate error:</strong> If \(x=a+\Delta x\), the change in \(f\) is approximately \(\Delta f \approx f'(a)\,\Delta x\).</li>
+    </ul>
+
+    <h3>Example: \(\sqrt{x}\) at \(a=4\)</h3>
+    <div class="kvs">
+      <div>Function</div><div>\(f(x)=\sqrt{x}\)</div>
+      <div>Values</div><div>\(f(4)=2\), \(f'(x)=\frac{1}{2\sqrt{x}}\), \(f'(4)=\frac{1}{4}\)</div>
+      <div>Linearization</div><div>\(L(x)=2+\frac{1}{4}(x-4)\)</div>
+      <div>Approximation</div><div>\(L(4.1)=2.025\) vs. \(\sqrt{4.1}\approx 2.0248\)</div>
+    </div>
+
+    <h3>Differentals</h3>
+    <p>Write \(dx\) for a small change in \(x\) and \(dy\approx f'(x)\,dx\) for the induced change in \(y\). This is the same linear idea expressed as infinitesimal increments.</p>
+    <div class="note">
+      <strong>Common pitfall:</strong> Linearization is <em>local</em>. As \(|x-a|\) grows, the approximation error grows quadratically. Always choose \(a\) close to your target \(x\).
+    </div>
+  </section>
+
+  <!-- 2. Motion Along a Line -->
+  <section>
+    <h2>2) Motion Along a Line (pp. 186–190)</h2>
+    <h3>Core definitions</h3>
+    <div class="kvs">
+      <div>Position</div><div>\(s(t)\)</div>
+      <div>Velocity</div><div>\(v(t)=s'(t)\)</div>
+      <div>Acceleration</div><div>\(a(t)=v'(t)=s''(t)\)</div>
+      <div>Speed</div><div>\(|v(t)|\) (scalar magnitude of velocity)</div>
+    </div>
+
+    <h3>Sign analysis</h3>
+    <ul>
+      <li>\(v(t)>0\): moving to the right (or up). \(\;\;v(t)<0\): moving left (or down).</li>
+      <li>\(v\) and \(a\) have the <em>same</em> sign \(\Rightarrow\) speed increases (speeding up).</li>
+      <li>\(v\) and \(a\) have <em>opposite</em> signs \(\Rightarrow\) speed decreases (slowing down).</li>
+    </ul>
+
+    <h3>Worked example</h3>
+    <p class="example-title">Given \(s(t)=t^3-6t^2+9t\).</p>
+    <div class="kvs">
+      <div>Velocity</div><div>\(v(t)=3t^2-12t+9=3(t-1)(t-3)\)</div>
+      <div>Acceleration</div><div>\(a(t)=6t-12=6(t-2)\)</div>
+      <div>Critical times</div><div>\(v=0\) at \(t=1,3\) (instantaneous rest)</div>
+    </div>
+    <ul>
+      <li>\(0<t<1\): \(v>0\) (right); \(1<t<3\): \(v<0\) (left); \(t>3\): \(v>0\) (right again).</li>
+      <li><strong>Displacement</strong> on \([t_1,t_2]\): \(\displaystyle s(t_2)-s(t_1)=\int_{t_1}^{t_2} v(t)\,dt\).</li>
+      <li><strong>Total distance</strong> on \([t_1,t_2]\): \(\displaystyle \int_{t_1}^{t_2} |v(t)|\,dt\) (split at sign changes of \(v\)).</li>
+    </ul>
+    <div class="note">
+      <strong>Exam tip:</strong> Distance \(\neq\) displacement. If \(v\) changes sign, you must break the integral at those times to integrate \(|v|\) correctly.
+    </div>
+  </section>
+
+  <!-- 3. Parametric · Polar · Vector -->
+  <section>
+    <h2>3) Parametric, Polar, and Vector Functions (pp. 190–195)</h2>
+
+    <h3>Parametric curves</h3>
+    <p>\(x=f(t),\; y=g(t)\). With \(dx/dt\neq 0\), the slope is</p>
+    <p>\[
+      \frac{dy}{dx}=\frac{\frac{dy}{dt}}{\frac{dx}{dt}}=\frac{g'(t)}{f'(t)}.
+    \]</p>
+    <p>The second derivative captures concavity:
+      \[
+        \frac{d^2 y}{dx^2} = \frac{d}{dt}\!\left(\frac{dy}{dx}\right)\Big/\frac{dx}{dt}.
+      \]
+    </p>
+    <div class="info">
+      <strong>Arc length (parametric):</strong> \(\displaystyle L=\int_{t_1}^{t_2}\sqrt{\left(\frac{dx}{dt}\right)^2+\left(\frac{dy}{dt}\right)^2}\,dt\).
+    </div>
+
+    <h3>Polar curves</h3>
+    <p>With \(r=f(\theta)\) and \(x=r\cos\theta, \; y=r\sin\theta\), one can show</p>
+    <p>\[
+      \frac{dy}{dx}=\frac{r'(\theta)\sin\theta + r(\theta)\cos\theta}{r'(\theta)\cos\theta - r(\theta)\sin\theta}.
+    \]</p>
+    <div class="info">
+      <strong>Polar area:</strong> \(\displaystyle A=\frac{1}{2}\int_{\alpha}^{\beta} \big(r(\theta)\big)^2\,d\theta.\)  
+      <strong>Polar arc length (Calc BC):</strong> \(\displaystyle L=\int_{\alpha}^{\beta}\sqrt{r^2 + \left(\frac{dr}{d\theta}\right)^2}\,d\theta.\)
+    </div>
+
+    <h3>Vector-valued motion</h3>
+    <p>\(\mathbf{r}(t)=\langle x(t),y(t),z(t)\rangle,\; \mathbf{v}(t)=\mathbf{r}'(t),\; \mathbf{a}(t)=\mathbf{v}'(t).\) Speed is \(\|\mathbf{v}(t)\|\); momentum is \(m\mathbf{v}(t)\).</p>
+    <div class="info">
+      <strong>Arc length (vector):</strong> \(\displaystyle L=\int_{t_1}^{t_2}\|\mathbf{v}(t)\|\,dt.\)  
+      <strong>Tangent & normal (BC):</strong> \(\mathbf{T}=\dfrac{\mathbf{v}}{\|\mathbf{v}\|},\;\; \kappa=\dfrac{\|\mathbf{T}'\|}{\|\mathbf{r}'\|}.\)
+    </div>
+    <div class="note">
+      <strong>Common pitfall:</strong> For \(\frac{d^2y}{dx^2}\), don’t differentiate with respect to \(x\) directly—differentiate \(\frac{dy}{dx}(t)\) with respect to \(t\), then divide by \(\frac{dx}{dt}\).
+    </div>
+  </section>
+
+  <!-- 4. Indefinite Integrals -->
+  <section>
+    <h2>4) Integration — Indefinite Integrals (pp. 207–229)</h2>
+    <h3>Basic antiderivatives</h3>
+    <div class="grid two">
+      <div>
+        <ul>
+          <li>\(\displaystyle \int k\,dx = kx + C\)</li>
+          <li>\(\displaystyle \int x^n dx = \frac{x^{n+1}}{n+1} + C \quad (n\neq -1)\)</li>
+          <li>\(\displaystyle \int \frac{1}{x}\,dx = \ln|x| + C\)</li>
+        </ul>
+      </div>
+      <div>
+        <ul>
+          <li>\(\displaystyle \int e^x dx = e^x + C\)</li>
+          <li>\(\displaystyle \int a^x dx = \frac{a^x}{\ln a} + C \quad (a>0,a\neq 1)\)</li>
+        </ul>
+      </div>
+    </div>
+    <h3>Trigonometric</h3>
+    <div class="grid two">
+      <div>
+        <ul>
+          <li>\(\displaystyle \int \sin x\,dx = -\cos x + C\)</li>
+          <li>\(\displaystyle \int \cos x\,dx = \sin x + C\)</li>
+          <li>\(\displaystyle \int \sec^2 x\,dx = \tan x + C\)</li>
+        </ul>
+      </div>
+      <div>
+        <ul>
+          <li>\(\displaystyle \int \csc^2 x\,dx = -\cot x + C\)</li>
+          <li>\(\displaystyle \int \sec x \tan x\,dx = \sec x + C\)</li>
+          <li>\(\displaystyle \int \csc x \cot x\,dx = -\csc x + C\)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sep"></div>
+
+    <h3>Substitution (change of variables)</h3>
+    <p>Let \(u=g(x)\), \(du=g'(x)\,dx\). Replace \(x\)-expressions with \(u\)-expressions to simplify.</p>
+    <p class="example-title">Example:</p>
+    <p>\(\displaystyle \int 2x\cos(x^2)\,dx \;\; \xrightarrow{u=x^2,\,du=2x\,dx}\;\; \int \cos u\,du=\sin u + C=\sin(x^2)+C.\)</p>
+    <div class="note"><strong>Tip:</strong> Look for an “inside function” whose derivative is present as a factor.</div>
+
+    <h3>Integration by parts</h3>
+    <p>\(\displaystyle \int u\,dv = uv - \int v\,du.\) Choose \(u\) to become simpler upon differentiation (LIATE heuristic: Log, Inverse trig, Algebraic, Trig, Exponential).</p>
+    <p class="example-title">Example:</p>
+    <p>\(\displaystyle \int xe^x dx.\) Take \(u=x,\; dv=e^x dx\Rightarrow du=dx,\; v=e^x.\)  
+      Then \(\int xe^x dx = x e^x - \int e^x dx = (x-1)e^x + C.\)</p>
+
+    <h3>Partial fractions (rational functions)</h3>
+    <p>When degree(num) &lt; degree(den), decompose into simpler terms:</p>
+    <ul>
+      <li>Distinct linear factors: \(\displaystyle \frac{A}{x-a} + \frac{B}{x-b} + \cdots\)</li>
+      <li>Repeated linear: include powers up to multiplicity, e.g. \(\displaystyle \frac{A}{x-a} + \frac{B}{(x-a)^2}\)</li>
+      <li>Irreducible quadratic: \(\displaystyle \frac{Ax+B}{x^2+px+q}\)</li>
+    </ul>
+    <p class="example-title">Example:</p>
+    <p>\(\displaystyle \frac{1}{x^2-1}=\frac{1}{(x-1)(x+1)}=\frac{1}{2}\left(\frac{1}{x-1}-\frac{1}{x+1}\right)\).  
+      Integrate termwise.</p>
+  </section>
+
+  <!-- 5. Definite Integrals -->
+  <section>
+    <h2>5) Definite Integrals (pp. 231–261)</h2>
+    <h3>Riemann sums & definition</h3>
+    <p>Partition \([a,b]\) into \(n\) subintervals of width \(\Delta x=\frac{b-a}{n}\), pick sample points \(x_i^*\), and sum areas:</p>
+    <p>\[
+      \int_a^b f(x)\,dx=\lim_{n\to\infty}\sum_{i=1}^{n} f(x_i^*)\,\Delta x.
+    \]</p>
+    <div class="info">
+      <strong>Signed area:</strong> If \(f(x)\ge 0\) on \([a,b]\), the integral equals geometric area. If \(f\le 0\), the integral is negative. In general, it’s “area above \(x\)-axis minus area below.”
+    </div>
+
+    <h3>Properties</h3>
+    <ul>
+      <li>\(\displaystyle \int_a^a f(x)\,dx=0\)</li>
+      <li>\(\displaystyle \int_a^b f(x)\,dx=-\int_b^a f(x)\,dx\)</li>
+      <li>\(\displaystyle \int_a^b [f(x)+g(x)]\,dx=\int_a^b f + \int_a^b g\)</li>
+      <li>\(\displaystyle \int_a^b c\,f(x)\,dx=c\int_a^b f(x)\,dx\)</li>
+    </ul>
+
+    <h3>Fundamental Theorem of Calculus</h3>
+    <div class="grid two">
+      <div>
+        <h4>Part I (accumulation derivative)</h4>
+        <p>If \(F(x)=\displaystyle \int_a^x f(t)\,dt\), then \(F'(x)=f(x)\) (when \(f\) is continuous).</p>
+      </div>
+      <div>
+        <h4>Part II (evaluation)</h4>
+        <p>If \(F'(x)=f(x)\), then \(\displaystyle \int_a^b f(x)\,dx=F(b)-F(a)\).</p>
+      </div>
+    </div>
+    <div class="note"><strong>Definite substitution:</strong> If \(u=g(x)\) is monotone on \([a,b]\), then \(\displaystyle \int_a^b f(g(x))g'(x)\,dx=\int_{u(a)}^{u(b)} f(u)\,du.\)</div>
+
+    <h3>Worked example</h3>
+    <p class="example-title">Compute \(\displaystyle \int_{0}^{2} (4-x^2)\,dx\).</p>
+    <p>\[
+      \left[4x - \frac{x^3}{3}\right]_{0}^{2} = \left(8 - \frac{8}{3}\right) - 0 = \frac{16}{3}.
+    \]</p>
+  </section>
+
+  <!-- Quick Practice & Checks -->
+  <section>
+    <h2>Quick Practice (Self-check)</h2>
+    <div class="grid two">
+      <div>
+        <h3>Linearization</h3>
+        <ol>
+          <li>Find the linearization of \(f(x)=\ln x\) at \(a=1\), then estimate \(\ln(1.05)\).</li>
+          <li>Use differentials to estimate \(\sqrt{9.2}\) from \(a=9\).</li>
+        </ol>
+      </div>
+      <div>
+        <h3>Motion</h3>
+        <ol>
+          <li>Given \(v(t)=t^2-4t\), find intervals where the particle speeds up/slow down.</li>
+          <li>Compute total distance on \([0,5]\) (split at sign changes).</li>
+        </ol>
+      </div>
+    </div>
+    <div class="grid two" style="margin-top:.5rem">
+      <div>
+        <h3>Param/Polar/Vector</h3>
+        <ol>
+          <li>For \(x=\cos t,\, y=\sin t\), find \(dy/dx\) and arc length on \([0,2\pi]\).</li>
+          <li>For \(r=2\cos\theta\), compute area for \(\theta\in[-\pi/2,\pi/2]\).</li>
+        </ol>
+      </div>
+      <div>
+        <h3>Integrals</h3>
+        <ol>
+          <li>\(\int x\cos(x^2)\,dx\) (substitution).</li>
+          <li>\(\int x^2 e^x\,dx\) (by parts, twice).</li>
+          <li>\(\int_{1}^{3}\dfrac{2x}{x^2+1}\,dx\) (definite substitution).</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- End -->
+</body>
+</html>
