@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Calculus Study Notes — Hyperbolic · Extrema · MVT · Curve Sketching · Optimization · Newton · Antiderivatives</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    :root{
+      --bg:#f8f9fa; --fg:#222; --card:#fff; --muted:#6b7280; --brand:#2c3e50; --accent:#3498db; --border:#e6e9ef;
+      --note:#fff8e1; --note-b:#ffe69c; --info:#eef7ff; --info-b:#d6e8fb;
+    }
+    *{box-sizing:border-box}
+    body{font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,sans-serif;margin:0;line-height:1.7;color:var(--fg);background:var(--bg)}
+    header{background:var(--brand);color:#fff;text-align:center;padding:1.6rem 1rem}
+    header h1{margin:0 0 .25rem;font-size:1.6rem}
+    header p{margin:0;opacity:.9}
+    main{max-width:1100px;margin:2rem auto;padding:0 1rem}
+    section{background:#fff;border:1px solid var(--border);border-radius:12px;box-shadow:0 6px 14px rgba(0,0,0,.06);padding:1.5rem;margin-bottom:1.25rem}
+    h2{margin:0 0 1rem;color:var(--brand);border-bottom:2px solid #f0f2f5;padding-bottom:.45rem;font-size:1.25rem}
+    h3{margin:1rem 0 .4rem;color:#34495e}
+    h4{margin:.7rem 0 .2rem;color:#3b4b63}
+    p code, li code{background:#f6f8fb;border:1px solid var(--border);border-radius:6px;padding:.1rem .35rem}
+    pre{background:#f6f8fb;border:1px solid var(--border);border-radius:10px;padding:.8rem 1rem;overflow:auto}
+    .note{background:var(--note);border:1px solid var(--note-b);border-left:4px solid #ffcc00;padding:.8rem 1rem;border-radius:10px}
+    .info{background:var(--info);border:1px solid var(--info-b);border-left:4px solid var(--accent);padding:.8rem 1rem;border-radius:10px}
+    .grid{display:grid;gap:1rem}
+    @media(min-width:920px){ .two{grid-template-columns:1fr 1fr} .three{grid-template-columns:1fr 1fr 1fr} }
+    ul{margin:.35rem 0 .25rem 1.1rem} li{margin:.25rem 0}
+    .kvs{display:grid;grid-template-columns:210px 1fr;gap:.4rem .75rem}
+    .sep{height:1px;background:#f0f2f5;margin:1rem 0}
+    table{border-collapse:collapse;width:100%;margin:.5rem 0}
+    th,td{border:1px solid var(--border);padding:.5rem .6rem;text-align:center}
+    th{background:#f6f7f9}
+    .example-title{font-weight:700;color:#2b3b56}
+    .meta {
+      font-size: 0.9rem;
+      color: #555;
+      margin-bottom: 1rem;
+      font-style: italic;
+    }
+    .Link {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      padding: 0.6rem 1.2rem;
+      background: #3498db;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      margin-left: 50%;
+      
+    }
+    .tag{display:inline-block;background:#eef7ff;border:1px solid #d6e8fb;color:#1a64a6;border-radius:6px;padding:.1rem .45rem;font-size:.85rem}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Calculus Study Notes</h1>
+    <p>Hyperbolic Functions · Extrema & Derivatives · Mean Value Theorem · Curve Sketching · Optimization · Newton’s Method · Antiderivatives</p>
+  </header>
+
+  <!-- 1. Hyperbolic Functions -->
+  <section>
+    <p class="meta">Posted on 2025.09.11</p>
+    <h2>1) Hyperbolic Functions (pp. 261–269)</h2>
+    <h3>Why learn them?</h3>
+    <p>Hyperbolic functions mirror many trigonometric identities but are defined via exponentials. They model the <em>catenary</em> (shape of a hanging chain), minimal surfaces, and appear in special relativity.</p>
+
+    <h3>Definitions & parity</h3>
+    <div class="kvs">
+      <div>\(\sinh x\)</div><div>\(\displaystyle \frac{e^x - e^{-x}}{2}\) (odd)</div>
+      <div>\(\cosh x\)</div><div>\(\displaystyle \frac{e^x + e^{-x}}{2}\) (even)</div>
+      <div>\(\tanh x\)</div><div>\(\displaystyle \frac{\sinh x}{\cosh x}\in(-1,1)\) (odd)</div>
+    </div>
+    <p><strong>Key identity (hyperbolic Pythagorean):</strong> \(\cosh^2 x - \sinh^2 x = 1\).</p>
+
+    <h3>Derivatives & integrals</h3>
+    <div class="grid two">
+      <div>
+        <ul>
+          <li>\(\displaystyle \frac{d}{dx}\sinh x = \cosh x\), \(\;\; \int \cosh x\,dx = \sinh x + C\)</li>
+          <li>\(\displaystyle \frac{d}{dx}\cosh x = \sinh x\), \(\;\; \int \sinh x\,dx = \cosh x + C\)</li>
+          <li>\(\displaystyle \frac{d}{dx}\tanh x = \operatorname{sech}^2 x\)</li>
+        </ul>
+      </div>
+      <div>
+        <ul>
+          <li>\(\operatorname{sech} x = 1/\cosh x\), \(\operatorname{csch} x = 1/\sinh x\), \(\coth x = 1/\tanh x\)</li>
+          <li>\(\displaystyle \frac{d}{dx}\,\operatorname{sech}x = -\operatorname{sech}x\,\tanh x\)</li>
+          <li>\(\displaystyle \frac{d}{dx}\,\operatorname{csch}x = -\operatorname{csch}x\,\coth x\)</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Inverse hyperbolics (useful forms)</h3>
+    <ul>
+      <li>\(\displaystyle \operatorname{arcsinh}\,x = \ln\!\big(x+\sqrt{x^2+1}\big)\), \(\;\; \frac{d}{dx}\operatorname{arcsinh}x=\frac{1}{\sqrt{x^2+1}}\)</li>
+      <li>\(\displaystyle \operatorname{arccosh}\,x = \ln\!\big(x+\sqrt{x^2-1}\big)\) (domain \(x\ge 1\)), \(\;\; \frac{d}{dx}\operatorname{arccosh}x=\frac{1}{\sqrt{x^2-1}}\)</li>
+      <li>\(\displaystyle \operatorname{arctanh}\,x = \tfrac12 \ln\!\frac{1+x}{1-x}\) (domain \(|x|<1\)), \(\;\; \frac{d}{dx}\operatorname{arctanh}x=\frac{1}{1-x^2}\)</li>
+    </ul>
+
+    <div class="info">
+      <strong>Catenary:</strong> The curve \(y=a\cosh(x/a)\) solves the hanging-chain problem; unlike a parabola, its curvature matches physics of uniform density and gravity.
+    </div>
+  </section>
+
+  <!-- 2. Extrema & derivatives -->
+  <section>
+    <h2>2) Extrema & Derivatives (pp. 280–289)</h2>
+    <h3>Critical points</h3>
+    <ul>
+      <li>\(c\) is a <em>critical point</em> if \(f'(c)=0\) or \(f'\) is undefined while \(f\) is defined.</li>
+      <li>Candidates for local extrema occur at critical points and endpoints (for closed intervals).</li>
+    </ul>
+
+    <h3>Second derivative test</h3>
+    <ul>
+      <li>If \(f'(c)=0\) and \(f''(c)>0\): local minimum; if \(f''(c)<0\): local maximum.</li>
+      <li>If \(f''(c)=0\): inconclusive — use first derivative sign chart or higher derivatives.</li>
+    </ul>
+
+    <h3>Example</h3>
+    <p class="example-title">\(f(x)=x^3-3x^2+2\)</p>
+    <ul>
+      <li>\(f'(x)=3x^2-6x=3x(x-2)\Rightarrow x=0,2\).</li>
+      <li>\(f''(x)=6x-6\Rightarrow f''(0)=-6\) (local max at \(x=0\)); \(f''(2)=6\) (local min at \(x=2\)).</li>
+    </ul>
+
+    <div class="note">
+      <strong>Endpoint awareness:</strong> On \([a,b]\), compare \(f\) at critical points <em>and</em> at \(a,b\) to find absolute extrema.
+    </div>
+  </section>
+
+  <!-- 3. Mean Value Theorem -->
+  <section>
+    <h2>3) Mean Value Theorem (pp. 290–296)</h2>
+    <h3>Statement</h3>
+    <p>If \(f\) is continuous on \([a,b]\) and differentiable on \((a,b)\), then \(\exists c\in(a,b)\) such that
+      \[
+        f'(c)=\frac{f(b)-f(a)}{b-a}.
+      \]
+    </p>
+    <p>Special case (Rolle’s Theorem): if \(f(a)=f(b)\), then \(\exists c\) with \(f'(c)=0\).</p>
+
+    <h3>Why it matters</h3>
+    <ul>
+      <li>Bridges average and instantaneous rate of change.</li>
+      <li>Proves monotonicity criteria and error bounds for approximations.</li>
+      <li>Real-world reading: if you drove 300 km in 3 h, then at some instant your speed was exactly 100 km/h.</li>
+    </ul>
+
+    <div class="note">
+      <strong>Common pitfall:</strong> Check hypotheses: continuity on \([a,b]\) and differentiability on \((a,b)\) are required.
+    </div>
+  </section>
+
+  <!-- 4. Shape of graph via derivatives -->
+  <section>
+    <h2>4) Graph Shape from \(f'\) and \(f''\) (pp. 296–309)</h2>
+    <h3>Sign analysis</h3>
+    <ul>
+      <li>\(f'>0\Rightarrow\) increasing; \(f'<0\Rightarrow\) decreasing.</li>
+      <li>\(f''>0\Rightarrow\) concave up; \(f''<0\Rightarrow\) concave down.</li>
+      <li>Inflection points: where concavity changes (often \(f''=0\) with sign change).</li>
+    </ul>
+
+    <h3>Workflow</h3>
+    <ol>
+      <li>Domain & discontinuities.</li>
+      <li>Intercepts and asymptotes.</li>
+      <li>Critical points (from \(f'=0\) or undefined).</li>
+      <li>Increasing/decreasing intervals (sign of \(f'\)).</li>
+      <li>Concavity & inflection (sign of \(f''\)).</li>
+      <li>Assemble a coherent sketch.</li>
+    </ol>
+    <div class="info">
+      <strong>Heuristic:</strong> Use sign charts for \(f'\) and \(f''\). They tell a consistent “story” of the graph without plotting many points.
+    </div>
+  </section>
+
+  <!-- 5. L'Hôpital -->
+  <section>
+    <h2>5) L’Hôpital’s Rule (pp. 309–319)</h2>
+    <h3>Purpose</h3>
+    <p>Evaluates indeterminate forms \(0/0\) or \(\infty/\infty\) by differentiating numerator and denominator:
+      \[
+        \lim_{x\to a}\frac{f(x)}{g(x)} = \lim_{x\to a}\frac{f'(x)}{g'(x)} \quad \text{if the latter limit exists and } f,g \text{ are differentiable near } a.
+      \]
+    </p>
+
+    <h3>Extensions via algebra</h3>
+    <ul>
+      <li>\(0\cdot\infty\): rewrite as \(\frac{f}{1/g}\) or \(\frac{g}{1/f}\).</li>
+      <li>\(\infty-\infty\): combine over common denominator.</li>
+      <li>\(0^0, 1^\infty, \infty^0\): take logs \(y=f^g \Rightarrow \ln y = g\ln f\), then exponentiate after limit.</li>
+    </ul>
+
+    <h3>Classic example</h3>
+    <p class="example-title">\(\displaystyle \lim_{x\to 0}\frac{\sin x}{x}\)</p>
+    <p>Direct \(0/0\). By L’Hôpital: \(\lim\frac{\cos x}{1}=1\).</p>
+
+    <div class="note">
+      <strong>Check differentiability and indeterminate form first.</strong> L’Hôpital does not apply to determinate limits, and repeated application without simplification can mislead.
+    </div>
+  </section>
+
+  <!-- 6. Curve Sketching -->
+  <section>
+    <h2>6) Curve Sketching (pp. 320–336)</h2>
+    <h3>Exam-ready checklist</h3>
+    <ol>
+      <li><strong>Domain</strong>, intercepts, symmetries (even/odd/periodic).</li>
+      <li><strong>Asymptotes:</strong> vertical (poles/zeros of denominator), horizontal/oblique (end behavior).</li>
+      <li><strong>Critical points:</strong> solve \(f'=0\) or undefined; classify (1st/2nd derivative tests).</li>
+      <li><strong>Monotonicity:</strong> intervals of \(f'>0\) / \(f'<0\).</li>
+      <li><strong>Concavity & inflection:</strong> \(f''\) sign and changes.</li>
+      <li><strong>Assemble the sketch:</strong> mark features to scale qualitatively.</li>
+    </ol>
+
+    <div class="info">
+      <strong>Tip:</strong> If rational, factor and cancel common terms first — removable discontinuities affect the sketch (holes).
+    </div>
+  </section>
+
+  <!-- 7. Optimization -->
+  <section>
+    <h2>7) Optimization Problems (pp. 336–351)</h2>
+    <h3>General modeling workflow</h3>
+    <ol>
+      <li>Define variables and draw a diagram.</li>
+      <li>Use constraints to express objective as a single-variable function \(F(x)\).</li>
+      <li>Find critical points: solve \(F'(x)=0\) and check endpoints/feasible boundaries.</li>
+      <li>Classify maxima/minima (2nd derivative or direct comparison).</li>
+      <li>Interpret solution in the original context; check units and feasibility.</li>
+    </ol>
+
+    <h3>Classics</h3>
+    <ul>
+      <li><strong>Fixed perimeter rectangle → max area is a square.</strong></li>
+      <li><strong>Fixed volume cylinder → min surface area</strong> (optimize radius/height).</li>
+      <li><strong>Min distance</strong> from a point to a line/curve (objective: squared distance simplifies derivatives).</li>
+    </ul>
+
+    <div class="note">
+      <strong>Model first, compute second:</strong> The hardest step is turning words into equations. Once \(F(x)\) is correct, calculus is routine.
+    </div>
+  </section>
+
+  <!-- 8. Newton's Method -->
+  <section>
+    <h2>8) Newton’s Method (pp. 351–356)</h2>
+    <h3>Iteration</h3>
+    <p>\[
+      x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}.
+    \]</p>
+    <p>Geometric idea: extend the tangent line at \((x_n,f(x_n))\) to the \(x\)-axis; its intercept is the next approximation.</p>
+
+    <h3>Convergence behavior</h3>
+    <ul>
+      <li><strong>Quadratic convergence</strong> near a simple root (fast improvement).</li>
+      <li>Can fail if \(f'(x_n)=0\) or if starting far from the root (divergence, cycles).</li>
+      <li>Multiple roots slow convergence to linear order.</li>
+    </ul>
+
+    <h3>Example: \(\sqrt{2}\)</h3>
+    <p>Let \(f(x)=x^2-2\), \(f'(x)=2x\). With \(x_0=1\): \(x_1=1.5\), \(x_2\approx1.4167\), \(x_3\approx1.4142\).</p>
+
+    <div class="info">
+      <strong>Practical tips:</strong> choose a reasonable initial guess (graph or bisection first), set stopping criteria (e.g., \(|x_{n+1}-x_n|<\varepsilon\) or \(|f(x_n)|<\varepsilon\)).
+    </div>
+  </section>
+
+  <!-- 9. Antiderivatives -->
+  <section>
+    <h2>9) Antiderivatives (p. 356)</h2>
+    <h3>Concept</h3>
+    <p>An antiderivative \(F\) of \(f\) satisfies \(F'=f\). The general antiderivative is \(F(x)+C\) (family shifted by a constant).</p>
+
+    <h3>Core table</h3>
+    <div class="grid two">
+      <div>
+        <ul>
+          <li>\(\displaystyle \int k\,dx = kx + C\)</li>
+          <li>\(\displaystyle \int x^n dx = \frac{x^{n+1}}{n+1}+C\) \((n\neq -1)\)</li>
+          <li>\(\displaystyle \int \frac{1}{x}\,dx = \ln|x| + C\)</li>
+          <li>\(\displaystyle \int e^x dx = e^x + C\)</li>
+          <li>\(\displaystyle \int a^x dx = \frac{a^x}{\ln a}+C\) \((a>0,a\neq1)\)</li>
+        </ul>
+      </div>
+      <div>
+        <ul>
+          <li>\(\displaystyle \int \sin x\,dx = -\cos x+C\)</li>
+          <li>\(\displaystyle \int \cos x\,dx = \sin x+C\)</li>
+          <li>\(\displaystyle \int \sec^2 x\,dx = \tan x+C\)</li>
+          <li>\(\displaystyle \int \csc^2 x\,dx = -\cot x+C\)</li>
+          <li>\(\displaystyle \int \sec x \tan x\,dx = \sec x+C\)</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Methods</h3>
+    <ul>
+      <li><strong>Substitution:</strong> \(u=g(x)\), \(du=g'(x)\,dx\) (reverse chain rule).</li>
+      <li><strong>Integration by parts:</strong> \(\int u\,dv=uv-\int v\,du\) (LIATE heuristic).</li>
+      <li><strong>Partial fractions:</strong> decompose rational functions (proper) into simpler terms.</li>
+      <li><strong>Trig identities:</strong> use Pythagorean & power-reduction identities for \(\sin^m x\cos^n x\).</li>
+    </ul>
+
+    <div class="note">
+      <strong>Next steps:</strong> Definite integrals and the Fundamental Theorem of Calculus connect antiderivatives to signed area and accumulation.
+    </div>
+  </section>
+ <a href="https://e2yeong.github.io/Calculus-Note/Cal2/"><p class="Link">Back</p></a>
+<a href="https://e2yeong.github.io/Calculus-Note/Cal2/Cal4"><p class="Link">Next</p></a>
+</body>
+</body>
+</html>
