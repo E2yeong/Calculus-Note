@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Calculus — Integrals & Applications of Integration</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<script async id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<style>
+:root{
+ --bg:#f8f9fb; --fg:#1f2937; --muted:#6b7280; --brand:#1d3557; --accent:#2563eb;
+ --card:#ffffff; --border:#e5e7eb; --info:#eef7ff; --info-b:#cfe4ff;
+ --note:#fff7e6; --note-b:#ffd591; --ok:#e8f7ef; --ok-b:#bfe9d1;
+}
+body{margin:0;font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--fg);background:var(--bg);line-height:1.7}
+header{background:var(--brand);color:#fff;text-align:center;padding:1.8rem 1rem}
+header h1{margin:0 0 .3rem;font-size:1.7rem}
+main{max-width:1100px;margin:2rem auto;padding:0 1rem}
+nav.toc{background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:0 6px 14px rgba(0,0,0,.06);padding:1.2rem;margin-bottom:1.25rem}
+nav.toc a{color:var(--accent);text-decoration:none}
+nav.toc a:hover{text-decoration:underline}
+section{background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:0 6px 14px rgba(0,0,0,.06);padding:1.4rem;margin-bottom:1.25rem}
+h2{margin:0 0 .8rem;color:var(--brand);border-bottom:2px solid #f0f2f5;padding-bottom:.4rem;font-size:1.3rem}
+h3{margin:1rem 0 .4rem;color:#2f3e56}
+.info,.note,.ok{border-radius:10px;padding:.8rem 1rem;margin:1rem 0}
+.info{background:var(--info);border:1px solid var(--info-b);border-left:4px solid #1e6ad6}
+.note{background:var(--note);border:1px solid var(--note-b);border-left:4px solid #f59e0b}
+.ok{background:var(--ok);border:1px solid var(--ok-b);border-left:4px solid #22a06b}
+.meta {
+      font-size: 0.9rem;
+      color: #555;
+      margin-bottom: 1rem;
+      font-style: italic;
+    }
+    .Link {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      padding: 0.6rem 1.2rem;
+      background: #3498db;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      margin-left: 50%;
+      
+    }
+</style>
+</head>
+<body>
+<header>
+<h1>📘 Chapter 5–6: Integrals & Applications of Integration</h1>
+<p>Area · Distance · Definite & Indefinite Integrals · Fundamental Theorem · Substitution · Volumes</p>
+</header>
+
+<main>
+<nav class="toc">
+<strong>Contents</strong>
+<ol>
+<li><a href="#area">5.1 Area & Distance Problems</a></li>
+<li><a href="#definite">5.2 The Definite Integral</a></li>
+<li><a href="#ftc">5.3 Fundamental Theorem of Calculus</a></li>
+<li><a href="#indef">5.4 Indefinite Integrals & Net Change</a></li>
+<li><a href="#sub">5.5 Substitution Rule</a></li>
+<li><a href="#app6">6.1 Areas Between Curves</a></li>
+<li><a href="#vol">6.2 Disk/Washer Volumes</a></li>
+<li><a href="#shell">6.3 Cylindrical Shells</a></li>
+</ol>
+</nav>
+
+<section id="area">
+ <p class="meta">Posted on 2025.10.20</p>
+<h2>5.1 The Area and Distance Problems</h2>
+<p><strong>Core question:</strong> How can we find the area under a curve or total distance from velocity?</p>
+<p>Integral = mathematical way of <em>accumulating</em> infinitely many small pieces.</p>
+
+<h3>Area under a curve</h3>
+<p>Divide [a,b] into n intervals (Δx = (b−a)/n). Approximate with rectangles:</p>
+<p>\[
+A ≈ \sum f(x_i^*) Δx, \quad \text{and } \lim_{n→∞} \sum f(x_i^*)Δx = \int_a^b f(x)\,dx
+\]</p>
+
+<div class="note">The definite integral is defined as the <strong>limit of Riemann sums</strong>.</div>
+
+<h3>Example</h3>
+<p>\( f(x)=x^2, [0,2] \Rightarrow \int_0^2 x^2 dx = [x^3/3]_0^2 = 8/3 \)</p>
+
+<h3>Connection with Motion</h3>
+<p>Total displacement: \(\int_a^b v(t)dt\)<br>Total distance: \(\int_a^b |v(t)|dt\)</p>
+<div class="ok">Integration accumulates change: area → distance → total quantity.</div>
+</section>
+
+<section id="definite">
+<h2>5.2 The Definite Integral</h2>
+<p>Formal definition:</p>
+<p>\[
+\int_a^b f(x)dx = \lim_{n→∞}\sum_{i=1}^{n} f(x_i^*)Δx
+\]</p>
+
+<h3>Properties</h3>
+<ul>
+<li>∫ₐᵃ f(x) dx = 0</li>
+<li>∫ₐᵇ f(x) dx = −∫ᵇₐ f(x) dx</li>
+<li>∫ₐᵇ (f+g)dx = ∫ₐᵇ f + ∫ₐᵇ g</li>
+<li>∫ₐᵇ c·f = c∫ₐᵇ f</li>
+</ul>
+<div class="info">Integral gives <strong>signed area</strong>: positive above x-axis, negative below.</div>
+
+<h3>Example</h3>
+<p>\( \int_0^2 (2x−1)dx = [x^2−x]_0^2 = 2 \)</p>
+</section>
+
+<section id="ftc">
+<h2>5.3 Fundamental Theorem of Calculus (FTC)</h2>
+<p>The bridge between differentiation and integration.</p>
+
+<h3>Part 1 — Differentiation of an Integral</h3>
+<p>If \( F(x) = \int_a^x f(t)dt \), then \( F'(x) = f(x) \)</p>
+<h3>Part 2 — Evaluating a Definite Integral</h3>
+<p>\( \int_a^b f(x)dx = F(b) − F(a), \) where \( F'(x)=f(x) \)</p>
+
+<div class="note">This allows us to compute integrals without limits of sums—using antiderivatives instead.</div>
+
+<h3>Example</h3>
+<p>\( \int_1^3 2x dx = [x^2]_1^3 = 8 \)</p>
+</section>
+
+<section id="indef">
+<h2>5.4 Indefinite Integrals & Net Change Theorem</h2>
+<h3>Definition</h3>
+<p>\( \int f(x)dx = F(x) + C \)</p>
+<p>C = constant of integration (disappears under differentiation).</p>
+
+<h3>Net Change Theorem</h3>
+<p>\( \int_a^b F'(x)dx = F(b) − F(a) \)</p>
+<div class="info">Integrating a rate of change gives total change (velocity→displacement, acceleration→velocity).</div>
+
+<h3>Example</h3>
+<p>v(t)=3t², [0,2]: \( \int_0^2 3t²dt = [t³]_0^2 = 8 \)</p>
+</section>
+
+<section id="sub">
+<h2>5.5 The Substitution Rule</h2>
+<p>The reverse of the Chain Rule. Let \(u=g(x), du=g'(x)dx\):</p>
+<p>\( \int f(g(x))g'(x)dx = \int f(u)du \)</p>
+
+<h3>Examples</h3>
+<p>1️⃣ \( \int 2x\cos(x²)dx → u=x², du=2x dx → \int \cos(u)du = \sin(u)+C = \sin(x²)+C \)</p>
+<p>2️⃣ \( \int_0^1 2x e^{x²}dx → u=x², du=2x dx → [e^u]_0^1 = e−1 \)</p>
+
+<div class="ok">Use when an inner function and its derivative appear together.</div>
+</section>
+
+<section id="app6">
+<h2>6.1 Areas Between Curves</h2>
+<p>Area = \(\int_a^b [Top(x) − Bottom(x)] dx\)</p>
+<h3>Example</h3>
+<p>f(x)=x², g(x)=x, [0,1]: \( \int_0^1 (x−x²)dx = [x²/2−x³/3]_0^1 = 1/6 \)</p>
+</section>
+
+<section id="vol">
+<h2>6.2 Volumes by Revolution — Disk & Washer Methods</h2>
+<h3>Disk Method</h3>
+<p>\( V = π\int_a^b [R(x)]² dx \)</p>
+<h3>Washer Method</h3>
+<p>\( V = π\int_a^b ([R_{outer}]² − [R_{inner}]²)dx \)</p>
+<h3>Example</h3>
+<p>y=√x, about x-axis [0,4]: \(V = π∫_0^4 x dx = [πx²/2]_0^4 = 8π\)</p>
+</section>
+
+<section id="shell">
+<h2>6.3 Cylindrical Shells</h2>
+<p>\( V = 2π\int_a^b (radius)(height)dx \)</p>
+<h3>Example</h3>
+<p>y=x, y=0, x=1 rotated about y-axis: \(V = 2π∫_0^1 x·x dx = 2π/3\)</p>
+<div class="note">Use shells for vertical (y-axis) rotations — simpler than disk/washer here.</div>
+</section>
+</main>
+<a href="https://e2yeong.github.io/Calculus-Note/Cal2/Cal3"><p class="Link">Back</p></a>
+<a href="https://e2yeong.github.io/Calculus-Note/Cal2/Cal4/Cal5"><p class="Link">Next</p></a>
+</body>
+</html>
