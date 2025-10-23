@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculus – Work, Average Value, and Techniques of Integration</title>
+  <style>
+    body { font-family: 'Segoe UI', Tahoma, sans-serif; line-height: 1.6; margin: 0; padding: 0; background: #f8f9fa; color: #222; }
+    header { background: #2c3e50; color: #fff; padding: 1.5rem 2rem; text-align: center; }
+    section { max-width: 950px; margin: 2rem auto; background: #fff; padding: 2rem; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.08); }
+    h2 { color: #2c3e50; border-bottom: 2px solid #eee; padding-bottom: 0.5rem; }
+    h3 { color: #34495e; margin-top: 1.4rem; }
+    .formula { background: #eef7ff; border-left: 4px solid #3498db; padding: 0.7rem; margin: 1rem 0; font-family: monospace; }
+    .example { background: #e8f8f5; border-left: 4px solid #1abc9c; padding: 0.7rem; margin: 1rem 0; }
+    .note { background: #fff3cd; border-left: 4px solid #ffcc00; padding: 0.7rem; margin: 1rem 0; border-radius: 6px; }
+    .meta { font-size: 0.9rem; color: #555; margin-bottom: 1rem; font-style: italic; }
+    ul { padding-left: 1.5rem; }
+    li { margin-bottom: 0.4rem; }
+    table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+    th, td { border: 1px solid #ddd; padding: 0.6rem; text-align: left; }
+    th { background: #f6f8fa; }
+    .Link { display: inline-block; margin-bottom: 1.5rem; padding: 0.6rem 1.2rem; background: #3498db; color: white; text-decoration: none; border-radius: 6px; margin-left: 50%; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>📘 Calculus – Work, Average Value & Techniques of Integration</h1>
+    <p>From Applied Integration to Advanced Problem-Solving</p>
+  </header>
+
+  <section>
+    <p class="meta">Chapter 6 – Applications of Integration (467 – 491)</p>
+    <h2>6.4 Work</h2>
+    <p>If force is constant:</p>
+    <div class="formula">W = Force × Distance</div>
+    <p>If force varies:</p>
+    <div class="formula">W = ∫<sub>a</sub><sup>b</sup> F(x) dx</div>
+
+    <div class="example">
+      <strong>Example (Hooke’s Law):</strong><br>
+      F(x) = k x → Work = ∫₀ᴸ k x dx = (k L²)/2
+    </div>
+    <p>The integral represents the total work as the sum of infinitesimal (force × distance) elements.</p>
+  </section>
+
+  <section>
+    <h2>6.5 Average Value of a Function</h2>
+    <div class="formula">f<sub>avg</sub> = (1 / (b − a)) ∫<sub>a</sub><sup>b</sup> f(x) dx</div>
+    <p>The “average height” of a function equals the area under the curve divided by the interval length.</p>
+
+    <div class="example">
+      <strong>Example:</strong><br>
+      f(x) = x² on [0, 2]<br>
+      ∫₀² x² dx = 8/3 → f<sub>avg</sub> = (1/2)(8/3) = 4/3
+    </div>
+    <p>Average value concepts are often applied in real data analysis and physical measurements.</p>
+  </section>
+
+  <section>
+    <h2>Review & Problems Plus</h2>
+    <p>Connects applications across disciplines — physics (work), statistics (averages), and geometry (areas, volumes).</p>
+  </section>
+
+  <section>
+    <p class="meta">Chapter 7 – Techniques of Integration (492 – 542)</p>
+    <h2>7.1 Integration by Parts</h2>
+    <div class="formula">∫ u dv = u v − ∫ v du</div>
+    <p>Choose <strong>u</strong> → differentiates easily, <strong>dv</strong> → integrates neatly.</p>
+
+    <div class="example">
+      <strong>Example:</strong> ∫ x eˣ dx<br>
+      u = x, dv = eˣ dx → du = dx, v = eˣ<br>
+      ⇒ x eˣ − ∫ eˣ dx = (x − 1) eˣ + C
+    </div>
+  </section>
+
+  <section>
+    <h2>7.2 Trigonometric Integrals</h2>
+    <p>Integrals of the form ∫ sinᵐx cosⁿx dx.</p>
+    <ul>
+      <li>If one power is odd → separate one term for substitution.</li>
+      <li>If both even → use half-angle identities.</li>
+    </ul>
+    <div class="example">
+      ∫ sin³x dx = ∫ (1 − cos²x) sinx dx = −cosx + (1/3) cos³x + C
+    </div>
+  </section>
+
+  <section>
+    <h2>7.3 Trigonometric Substitution</h2>
+    <p>Use trig substitution when radicals appear:</p>
+    <table>
+      <tr><th>Form</th><th>Substitution</th></tr>
+      <tr><td>√(a² − x²)</td><td>x = a sinθ</td></tr>
+      <tr><td>√(a² + x²)</td><td>x = a tanθ</td></tr>
+      <tr><td>√(x² − a²)</td><td>x = a secθ</td></tr>
+    </table>
+    <div class="example">
+      <strong>Example:</strong> ∫ dx / √(1 − x²)<br>
+      Let x = sinθ → dx = cosθ dθ → ∫ cosθ / cosθ dθ = θ = arcsin x + C
+    </div>
+  </section>
+
+  <section>
+    <h2>7.4 Partial Fractions</h2>
+    <p>For rational functions, decompose before integrating.</p>
+    <div class="example">
+      ∫ (2x + 3)/(x² + x) dx = ∫ (A/x + B/(x + 1)) dx = 2 ln|x| + ln|x + 1| + C
+    </div>
+  </section>
+
+  <section>
+    <h2>7.5 Integration Strategy</h2>
+    <ol>
+      <li>Try basic formulas.</li>
+      <li>Use substitution.</li>
+      <li>Integration by parts.</li>
+      <li>Trigonometric integrals / substitution.</li>
+      <li>Partial fractions.</li>
+      <li>Numerical approximation if needed.</li>
+    </ol>
+    <div class="note">Practice identifying which method fits best — a key exam skill.</div>
+  </section>
+
+  <section>
+    <h2>7.6 Using Tables & CAS</h2>
+    <p>Complex integrals may rely on integration tables or computer algebra systems (CAS).  
+    AP exams distinguish between formula-memorization and CAS-based reasoning.</p>
+  </section>
+
+  <section>
+    <h2>7.7 Approximate Integration</h2>
+    <p><strong>Numerical Methods:</strong></p>
+    <ul>
+      <li>Midpoint Rule</li>
+      <li>Trapezoidal Rule</li>
+      <li>Simpson’s Rule</li>
+    </ul>
+
+    <div class="example">
+      <strong>Example:</strong> ∫₀² x² dx, Trapezoidal Rule (n = 2)<br>
+      (Δx / 2)[f(0) + 2 f(1) + f(2)] = 1 × [0 + 2(1) + 4] = 6<br>
+      True value = 8/3 ≈ 2.67 → approximation = 3 → check error.
+    </div>
+  </section>
+
+  <a href="https://e2yeong.github.io/Calculus-Note/Cal2/Cal3/Cal4/"><p class="Link">Back</p></a>
+  <a href="https://e2yeong.github.io/Calculus-Note/Cal2/Cal3/Cal4/Cal5/Cal6/"><p class="Link">Next</p></a>
+</body>
+</html>
