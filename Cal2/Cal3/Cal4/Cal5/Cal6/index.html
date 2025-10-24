@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Differential Equations & Infinite Series – Study Guide</title>
+  <style>
+    body { font-family: 'Segoe UI', Tahoma, sans-serif; line-height: 1.6; margin: 0; padding: 0; background: #f8f9fa; color: #222; }
+    header { background: #2c3e50; color: #fff; padding: 1.5rem 2rem; text-align: center; }
+    section { max-width: 950px; margin: 2rem auto; background: #fff; padding: 2rem; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.08); }
+    h2 { color: #2c3e50; border-bottom: 2px solid #eee; padding-bottom: 0.5rem; }
+    h3 { color: #34495e; margin-top: 1.4rem; }
+    .formula { background: #eef7ff; border-left: 4px solid #3498db; padding: 0.7rem; margin: 1rem 0; font-family: monospace; }
+    .example { background: #e8f8f5; border-left: 4px solid #1abc9c; padding: 0.7rem; margin: 1rem 0; }
+    .note { background: #fff3cd; border-left: 4px solid #ffcc00; padding: 0.7rem; margin: 1rem 0; border-radius: 6px; }
+    .meta { font-size: 0.9rem; color: #555; margin-bottom: 1rem; font-style: italic; }
+    ul { padding-left: 1.5rem; }
+    li { margin-bottom: 0.4rem; }
+    table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+    th, td { border: 1px solid #ddd; padding: 0.6rem; text-align: left; }
+    th { background: #f6f8fa; }
+    .Link { display: inline-block; margin-bottom: 1.5rem; padding: 0.6rem 1.2rem; background: #3498db; color: white; text-decoration: none; border-radius: 6px; margin-left: 50%; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>📘 Differential Equations & Infinite Series</h1>
+    <p>Understanding Improper Integrals, Growth Models, and Convergence</p>
+  </header>
+
+  <section>
+    <p class="meta">Chapter 7.8 – Improper Integrals (pp.560–573)</p>
+    <h2>1️⃣ What Are Improper Integrals?</h2>
+    <p>An <strong>improper integral</strong> deals with cases where the interval is infinitely long, or where the function becomes infinite (blows up).</p>
+    <p>Even when something seems “infinite,” the total area might still approach a finite value — we use <strong>limits</strong> to check if that happens.</p>
+
+    <h3>Case 1 – Infinite Interval</h3>
+    <div class="formula">∫₁^∞ (1/x²) dx = lim(b→∞) [-1/x]₁^b = 1</div>
+    <p>Although the graph stretches forever, the tail gets smaller so fast that the total area converges to 1.</p>
+    <div class="note">This is called a <strong>convergent improper integral</strong> — it has a finite result.</div>
+
+    <h3>Case 2 – Divergent Example</h3>
+    <div class="formula">∫₁^∞ (1/x) dx = lim(b→∞) [ln x]₁^b = ∞</div>
+    <p>The function 1/x decreases slowly, so the area keeps growing without limit — it <strong>diverges</strong>.</p>
+
+    <h3>Case 3 – Function Blows Up Inside the Interval</h3>
+    <div class="formula">∫₀¹ (1/√x) dx = lim(a→0⁺) ∫ₐ¹ x^(-1/2) dx = [2√x]ₐ¹ = 2</div>
+    <p>Even though it becomes infinite at x = 0, the total area is still finite → <strong>convergent</strong>.</p>
+
+    <div class="note">
+      - Infinite limits or singular points don’t always mean “infinite area.”  
+      - <strong>Convergent</strong> → finite area, <strong>Divergent</strong> → infinite area.
+    </div>
+  </section>
+
+  <section>
+    <p class="meta">Chapter 8 – Differential Equations (574–606)</p>
+    <h2>2️⃣ What Are Differential Equations?</h2>
+    <p>A <strong>differential equation</strong> involves derivatives — it describes how a quantity changes rather than what it is.  
+    Solving it means finding the original function that fits that rate of change.</p>
+
+    <div class="example">
+      Example: dy/dx = 3x² → Integrate both sides → y = ∫3x² dx = x³ + C  
+      The result is called the <strong>general solution</strong>.
+    </div>
+
+    <h3>Separable Differential Equations</h3>
+    <p>Equations that can be “split” into x terms and y terms:</p>
+    <div class="formula">dy/dx = g(x)·h(y) → dy/h(y) = g(x) dx</div>
+    <p>Then integrate both sides.</p>
+
+    <div class="example">
+      Example: dy/dx = x·y → (1/y) dy = x dx → ln|y| = x²/2 + C → y = Ce^(x²/2)
+    </div>
+  </section>
+
+  <section>
+    <h2>3️⃣ Exponential Growth and Decay (8.1)</h2>
+    <p>Change is proportional to the current amount:</p>
+    <div class="formula">dy/dt = k·y</div>
+    <ul>
+      <li>k > 0 → exponential <strong>growth</strong></li>
+      <li>k < 0 → exponential <strong>decay</strong></li>
+    </ul>
+    <p>Integrating both sides:</p>
+    <div class="formula">dy/y = k dt → ln|y| = kt + C → y = Ce^(kt)</div>
+    <p>This describes population growth, radioactive decay, and cooling processes.</p>
+  </section>
+
+  <section>
+    <h2>4️⃣ Logistic Growth (8.2)</h2>
+    <div class="formula">dy/dt = k·y·(1 − y/M)</div>
+    <ul>
+      <li>M = maximum capacity (carrying capacity)</li>
+      <li>k = growth rate</li>
+    </ul>
+    <p>Starts exponentially, slows down as it nears the limit M → forming an <strong>S-shaped curve</strong> (sigmoid).</p>
+  </section>
+
+  <section>
+    <p class="meta">Chapter 9 – Sequences and Series (608–641)</p>
+    <h2>5️⃣ Sequences</h2>
+    <p>A <strong>sequence</strong> is an ordered list of numbers following a pattern.</p>
+    <div class="example">Example: 1, 1/2, 1/3, 1/4, … → aₙ = 1/n</div>
+
+    <h3>Convergence and Divergence</h3>
+    <ul>
+      <li>If aₙ → a specific number → the sequence <strong>converges</strong>.</li>
+      <li>If it doesn’t settle on any number → it <strong>diverges</strong>.</li>
+    </ul>
+    <div class="example">
+      aₙ = 1/n → 0 (convergent)<br>
+      aₙ = (−1)ⁿ → oscillates (divergent)
+    </div>
+  </section>
+
+  <section>
+    <h2>6️⃣ Series</h2>
+    <p>A <strong>series</strong> is the sum of all terms in a sequence:</p>
+    <div class="formula">S = a₁ + a₂ + a₃ + …</div>
+
+    <h3>Geometric Series</h3>
+    <p>Form: a + ar + ar² + …  
+    Convergent if |r| < 1</p>
+    <div class="formula">S = a / (1 − r)</div>
+    <div class="example">Example: 1 + 1/2 + 1/4 + 1/8 + … = 2</div>
+
+    <h3>Divergence Test</h3>
+    <div class="formula">If lim (n→∞) aₙ ≠ 0 → the series diverges.</div>
+    <p>If terms don’t approach 0, the sum keeps growing forever.</p>
+
+    <h3>Ratio Test</h3>
+    <div class="formula">L = lim (n→∞) |aₙ₊₁ / aₙ|</div>
+    <ul>
+      <li>L < 1 → convergent</li>
+      <li>L > 1 → divergent</li>
+      <li>L = 1 → inconclusive</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>7️⃣ Key Takeaways</h2>
+    <ul>
+      <li><strong>Improper Integrals</strong>: some “infinite” areas can still be finite.</li>
+      <li><strong>Differential Equations</strong>: find functions from their rate of change.</li>
+      <li><strong>Exponential Models</strong>: describe growth, decay, and real-world change.</li>
+      <li><strong>Sequences</strong>: study how numbers behave as n → ∞.</li>
+      <li><strong>Series</strong>: determine if infinite sums converge or diverge.</li>
+    </ul>
+  </section>
+
+  <a href="https://e2yeong.github.io/Calculus-Note/Chapter7/"><p class="Link">Back</p></a>
+  <a href="https://e2yeong.github.io/Calculus-Note/Chapter10/"><p class="Link">Next</p></a>
+</body>
+</html>
