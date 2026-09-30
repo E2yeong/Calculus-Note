@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page moved</title>
+<script>
+// The notes used to live in deeply nested folders. Old links land here and
+// are forwarded to the page's new address.
+(function () {
+  var base = "/Calculus-Note/";
+  var moved = {
+  "Cal2": "notes/02-linearization-motion-parametric-polar/",
+  "Cal2/Cal3": "notes/03-applications-of-derivatives/",
+  "Cal2/Cal3/Cal4": "notes/04-integrals-and-applications/",
+  "Cal2/Cal3/Cal4/Cal5": "notes/05-work-average-value-integration-techniques/",
+  "Cal2/Cal3/Cal4/Cal5/Cal6": "notes/06-differential-equations-and-series/",
+  "Cal2/Cal3/Cal4/Cal5/Cal6/Cal7": "notes/07-power-and-taylor-series/"
+};
+  var path = decodeURIComponent(location.pathname);
+  if (path.indexOf(base) !== 0) return;
+  var old = path.slice(base.length).replace(/\u115f/g, "").replace(/index\.html$/, "").replace(/^\/+|\/+$/g, "");
+  var target = moved[old];
+  if (target === undefined) return;
+  location.replace(/^https?:/.test(target) ? target : base + target + location.hash);
+})();
+</script>
+<style>body{font-family:system-ui,sans-serif;max-width:640px;margin:4rem auto;padding:0 1rem;color:#222}</style>
+</head>
+<body>
+<h1>Page not found</h1>
+<p>This page may have moved. See the <a href="/Calculus-Note/">list of all notes</a>.</p>
+</body>
+</html>
